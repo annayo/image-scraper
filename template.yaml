@@ -1,7 +1,7 @@
 AWSTemplateFormatVersion: 2010-09-09
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  Functio
+  Function:
     Type: AWS::Serverless::Function
     Properties:
       FunctionName: !Sub ${AWS::StackName}-Function
@@ -16,6 +16,12 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - LambdaInvokePolicy:
+            FunctionName: !Ref Function2
+      Environment:
+        Variables:
+          FUNCTION_NAME: !Ref Function2
+          FUNCTION_ARN: !GetAtt Function2.Arn
   Function2:
     Type: AWS::Serverless::Function
     Properties:
@@ -31,6 +37,12 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - LambdaInvokePolicy:
+            FunctionName: !Ref Function
+      Environment:
+        Variables:
+          FUNCTION_NAME: !Ref Function
+          FUNCTION_ARN: !GetAtt Function.Arn
 Parameters:
   StackTagName:
     Type: String
