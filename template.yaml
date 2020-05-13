@@ -52,6 +52,12 @@ Resources:
       Tracing: Active
       Policies:
         - AWSXrayWriteOnlyAccess
+        - LambdaInvokePolicy:
+            FunctionName: !Ref Function
+      Environment:
+        Variables:
+          FUNCTION_NAME: !Ref Function
+          FUNCTION_ARN: !GetAtt Function.Arn
 Parameters:
   StackTagName:
     Type: String
