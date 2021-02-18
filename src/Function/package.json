@@ -2,7 +2,9 @@
   "name": "function",
   "version": "1.0.0",
   "devDependencies": {
-    "aws-sdk": "~2",
-    "lodash": "1.0.0"
+    "aws-sdk": "~2"
+  },
+  "dependencies": {
+    "lodash": "^1.0.0"
   }
 }
