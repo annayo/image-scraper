@@ -1,5 +1,5 @@
 Transform: AWS::Serverless-2016-10-31
-Resources
+Resources:
   Function2:
     Type: AWS::Serverless::Function
     Properties:
