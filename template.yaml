@@ -1,41 +1,5 @@
 Transform: AWS::Serverless-2016-10-31
 Resources:
-  Function2:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-Function2
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: Function2
-      CodeUri: src/Function2
-      Handler: index.handler
-      Runtime: nodejs12.x
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
-        - LambdaInvokePolicy:
-            FunctionName: !Ref Function3
-      Environment:
-        Variables:
-          FUNCTION_NAME: !Ref Function3
-          FUNCTION_ARN: !GetAtt Function3.Arn
-  Function3:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-Function3
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: Function3
-      CodeUri: src/Function3
-      Handler: index.handler
-      Runtime: nodejs14.x
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
   Function:
     Type: AWS::Serverless::Function
     Properties:
@@ -72,21 +36,6 @@ Resources:
         Variables:
           FUNCTION_NAME: !Ref Function
           FUNCTION_ARN: !GetAtt Function.Arn
-  Function5:
-    Type: AWS::Serverless::Function
-    Properties:
-      FunctionName: !Sub ${AWS::StackName}-Function5
-      Description: !Sub
-        - Stack ${StackTagName} Environment ${EnvironmentTagName} Function ${ResourceName}
-        - ResourceName: Function5
-      CodeUri: src/Function5
-      Handler: index.handler
-      Runtime: nodejs14.x
-      MemorySize: 3008
-      Timeout: 30
-      Tracing: Active
-      Policies:
-        - AWSXrayWriteOnlyAccess
 Parameters:
   StackTagName:
     Type: String
